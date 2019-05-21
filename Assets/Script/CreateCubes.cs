@@ -20,6 +20,7 @@ public class CreateCubes : MonoBehaviour
         RunLoop((d, h, w) =>
         {
             GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            cube.name = String.Format("Cube({0}/{1}/{2})", d, h, w);
             cube.transform.position = new Vector3(w - WIDTH_2, h - HEIGHT_2, d - DEPTH_2);
             Rigidbody cubeRigidbody = cube.AddComponent<Rigidbody>();
             cubeRigidbody.useGravity = false;
