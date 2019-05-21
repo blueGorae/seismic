@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class P_Wave : MonoBehaviour
+public class S_Wave_2D : MonoBehaviour
 {
     private Vector3[] originalVertices;
     private Mesh mesh;
@@ -37,9 +37,9 @@ public class P_Wave : MonoBehaviour
         // traveling with a speed of 1 unit per second.
         // Change this to your own wave function.
         return new Vector3(
-(float)(origin.x - 0.1 * Mathf.Cos(2 * Mathf.PI - (Time.fixedTime - (origin.x / 6)))),
+             origin.x,
              origin.y,
-             origin.z
+             origin.z + Mathf.Sin(origin.x + timeCode)
         );
     }
 }
