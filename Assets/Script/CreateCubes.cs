@@ -25,8 +25,21 @@ public class CreateCubes : MonoBehaviour
                 {
 
                     GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                    cube.transform.position = new Vector3(w - WIDTH_2, h - HEIGHT_2, d - DEPTH_2);
+                    Vector3 originPosition = new Vector3(w - WIDTH_2, h - HEIGHT_2, d - DEPTH_2);
+                    cube.transform.position = originPosition;
+
+                    cube.AddComponent<LineRenderer>();
+                    LineRenderer lr = cube.GetComponent<LineRenderer>();
+                    lr.positionCount = 4;
+                    float lineWidth = 0.1f;
+                    lr.widthMultiplier = lineWidth;
+
+                    lr.startColor = Color.black;
+                    lr.endColor = Color.black;
+
+
                     Cubes[d, h, w] = cube;
+
                 }
             }
         }
@@ -44,7 +57,15 @@ public class CreateCubes : MonoBehaviour
             {
                 for (int w = 0; w < WIDTH; w++)
                 {
-                    Cubes[d, h, w].transform.localScale += new Vector3((float)(-0.01 * Mathf.Cos(2 * Mathf.PI - (Time.fixedTime - ((float)w / 6)))), 0, 0);
+                    Cubes[d, h, w].transform.position += new Vector3((float)(-0.01 * Mathf.Cos(2 * Mathf.PI - (Time.fixedTime - ((float)w / 6)))), 0, 0);
+
+                    LineRenderer lr = Cubes[d, h, w].GetComponent<LineRenderer>();
+                    float lineWidth = 0.1f;
+
+                    lr.SetPosition(0, Cubes[d, h, w].transform.position - new Vector3(0, -(0.5f + lineWidth / 2.0f), -(0.5f + lineWidth / 2.0f)));
+                    lr.SetPosition(1, Cubes[d, h, w].transform.position - new Vector3(0, (0.5f + lineWidth / 2.0f), -(0.5f + lineWidth / 2.0f)));
+                    lr.SetPosition(2, Cubes[d, h, w].transform.position - new Vector3(0, (0.5f + lineWidth / 2.0f), (0.5f + lineWidth / 2.0f)));
+                    lr.SetPosition(3, Cubes[d, h, w].transform.position - new Vector3(0, -(0.5f + lineWidth / 2.0f), (0.5f + lineWidth / 2.0f)));
                 }
             }
         }
