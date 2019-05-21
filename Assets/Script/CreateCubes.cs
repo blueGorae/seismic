@@ -17,7 +17,6 @@ public class CreateCubes : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Joint joint;
         RunLoop((d, h, w) =>
         {
             GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -30,24 +29,23 @@ public class CreateCubes : MonoBehaviour
         RunLoop((d, h, w) =>
         {
             GameObject cube = cubes[d, h, w];
-            FixedJoint fixedJoint = cube.AddComponent<FixedJoint>();
-            if (w <= 0)
+            GameObject[] jointCubes = {
+                w < WIDTH - 1 ? cubes[d, h, w + 1] : null,
+                0 < w ? cubes[d, h, w - 1] : null,
+                h < HEIGHT - 1 ? cubes[d, h + 1, w] : null,
+                0 < h ? cubes[d, h - 1, w] : null,
+                d < DEPTH - 1 ? cubes[d + 1, h, w] : null,
+                0 < d ? cubes[d - 1, h, w] : null
+            };
+            foreach (GameObject jointCube in jointCubes)
             {
-                GameObject cube1 = cubes[d, h, w - 1];
-            }
-            else if (w >= WIDTH - 1)
-            {
-
-            }
-            else
-            {
-
+                if (jointCube != null)
+                {
+                    FixedJoint fixedJoint = cube.AddComponent<FixedJoint>();
+                    fixedJoint.connectedBody = jointCube.GetComponent<Rigidbody>();
+                }
             }
         });
-
-        joint = Cubes[0, 0, 1].AddComponent<Joint>();
-        joint.connectedBody = Cubes[0, 0, 2].GetComponent<Rigidbody>();
-
     }
 
     public void RunLoop(Action<int, int, int> action)
@@ -63,7 +61,6 @@ public class CreateCubes : MonoBehaviour
             }
         }
     }
-
 
     // Update is called once per frame
     void Update()
