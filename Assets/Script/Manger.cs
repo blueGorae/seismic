@@ -55,6 +55,7 @@ public class Manger : MonoBehaviour
         magnitudeValue.text = magnitudeSlider.value.ToString();
         target2D.Select();
         waveP.Select();
+        densityDrySands.Select();
     }
 
     // Update is called once per frame
