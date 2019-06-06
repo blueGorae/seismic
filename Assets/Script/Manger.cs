@@ -133,6 +133,8 @@ public class Manger : MonoBehaviour
                 break;
             case Target.T_GRASSLAND:
                 magnitude = magnitudeGrassland;
+                camera.transform.position = new Vector3(0, 500, 500);
+                camera.transform.rotation = Quaternion.Euler(50, 0, 0);
                 break;
             default:
                 return;
