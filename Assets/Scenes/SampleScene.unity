@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 13730021}
   - component: {fileID: 13730020}
   m_Layer: 5
-  m_Name: Value
+  m_Name: DensityValue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1352,6 +1352,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 814197074}
+  - component: {fileID: 814197073}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -1359,6 +1360,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &814197073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 814197072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dddc478590f3e4b6996635b2f2d00929, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  densityValue: {fileID: 13730020}
+  magnitudeValue: {fileID: 1417163752}
 --- !u!4 &814197074
 Transform:
   m_ObjectHideFlags: 0
@@ -1384,7 +1399,7 @@ GameObject:
   - component: {fileID: 886945359}
   - component: {fileID: 886945360}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: DensitySlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1461,7 +1476,18 @@ MonoBehaviour:
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 814197073}
+        m_MethodName: UpdateDensitySlider
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &963194225
@@ -1977,7 +2003,7 @@ GameObject:
   - component: {fileID: 1164164883}
   - component: {fileID: 1164164884}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: MagnitudeSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2054,7 +2080,18 @@ MonoBehaviour:
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 814197073}
+        m_MethodName: UpdateMagnitudeSlider
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &1210441100
@@ -2225,7 +2262,7 @@ GameObject:
   - component: {fileID: 1417163753}
   - component: {fileID: 1417163752}
   m_Layer: 5
-  m_Name: Value
+  m_Name: MagnitudeValue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
