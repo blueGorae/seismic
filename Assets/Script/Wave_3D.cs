@@ -37,7 +37,7 @@ public class Wave_3D : MonoBehaviour
         A = (float)(Mathf.Pow(10, (float)(manager.Magnitude(Target.T_3D) - 2.56 * (Mathf.Log10(4)) + 1.67)) / 1000);
 
         Vector3[] newVertices = new Vector3[originalVertices.Length];
-        if (manager.Apply3D())
+        if (manager.Apply3D() || manager.ApplyEarthquake())
         {
             for (int i = 0; i < originalVertices.Length; i++)
             {
@@ -94,8 +94,9 @@ public class Wave_3D : MonoBehaviour
         }
         else if (manager.ApplyEarthquake())
         {
-            float r = Mathf.Sqrt(Mathf.Pow(origin.x, 2) + Mathf.Pow(origin.y, 2));
 
+            float r = Mathf.Sqrt(Mathf.Pow(origin.x, 2) + Mathf.Pow(origin.y, 2));
+            
             float d_p_start = v_p * timeCode;
             float d_p_end = d_p_start - v_p * 2;
             float cos_theta = origin.x / r;
