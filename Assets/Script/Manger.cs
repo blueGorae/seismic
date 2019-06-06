@@ -28,6 +28,7 @@ public class DensityVelocity
 
 public class Manger : MonoBehaviour
 {
+    public Camera camera;
     public ToggleGroup targetGroup;
     public Toggle target2D;
     public Toggle target3D;
@@ -122,12 +123,18 @@ public class Manger : MonoBehaviour
         {
             case Target.T_2D:
                 magnitude = magnitude2D;
+                camera.transform.position = new Vector3(0, 30, -30);
+                camera.transform.rotation = Quaternion.Euler(45, 0, 0);
                 break;
             case Target.T_3D:
                 magnitude = magnitude3D;
+                camera.transform.position = new Vector3(0, 30, -30);
+                camera.transform.rotation = Quaternion.Euler(45, 0, 0);
                 break;
             case Target.T_GRASSLAND:
                 magnitude = magnitudeGrassland;
+                camera.transform.position = new Vector3(0, 500, 500);
+                camera.transform.rotation = Quaternion.Euler(50, 0, 0);
                 break;
             default:
                 return;
