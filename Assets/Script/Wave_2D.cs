@@ -32,11 +32,10 @@ public class Wave_2D : MonoBehaviour
     void Update()
     {
         density = manager.DensityVelocityValue().density;
-        float adjustScale = 1000f;
-        v_p = manager.DensityVelocityValue().v_p / adjustScale;
-        v_s = manager.DensityVelocityValue().v_s / adjustScale;
+        v_p = manager.DensityVelocityValue().v_p / scale;
+        v_s = manager.DensityVelocityValue().v_s / scale;
 
-        A = (float)(Mathf.Pow(10, (float)(manager.Magnitude(Target.T_2D) - 2.56 * (Mathf.Log10(4)) + 1.67)) / adjustScale);
+        A = (float)(Mathf.Pow(10, (float)(manager.Magnitude(Target.T_2D) - 2.56 * (Mathf.Log10(4)) + 1.67)) / scale);
 
         Vector3[] newVertices = new Vector3[originalVertices.Length];
         if (manager.Apply2D())

@@ -3,13 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Wave_3D : MonoBehaviour
+public class Wave_GL : MonoBehaviour
 {
     public Manger manager;
     private Vector3[] originalVertices;
     private Mesh mesh;
     private float density = 1.0f;
-    private float scale = 1000f;
+    private float scale = 1f;
     private float v_p;
     private float v_s;
     private float d = 0.0f;
@@ -41,7 +41,7 @@ public class Wave_3D : MonoBehaviour
 
         Vector3[] newVertices = new Vector3[originalVertices.Length];
 
-        if (manager.Apply3D())
+        if (manager.ApplyGrassland())
         {
             for (int i = 0; i < originalVertices.Length; i++)
             {
