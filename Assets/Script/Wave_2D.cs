@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Wave_2D : MonoBehaviour
 {
-    public Manger manger;
+    public Manger manager;
     private Vector3[] originalVertices;
     private Mesh mesh;
 
@@ -18,7 +18,7 @@ public class Wave_2D : MonoBehaviour
     void Update()
     {
         Vector3[] newVertices = new Vector3[originalVertices.Length];
-        if (manger.Apply2D())
+        if (manager.Apply2D())
         {
             for (int i = 0; i < originalVertices.Length; i++)
             {
@@ -41,7 +41,7 @@ public class Wave_2D : MonoBehaviour
         // sine wave with an amplitude of 1 unit and a period of 2π units, 
         // traveling with a speed of 1 unit per second.
         // Change this to your own wave function.
-        if (manger.ApplyP())
+        if (manager.ApplyP())
         {
             return new Vector3(
                 (float)(origin.x - Mathf.Cos(2 * Mathf.PI * (Time.fixedTime - (origin.x / 6)))),
@@ -49,7 +49,7 @@ public class Wave_2D : MonoBehaviour
                 origin.z
             );
         }
-        else if (manger.ApplyS())
+        else if (manager.ApplyS())
         {
             return new Vector3(
                 origin.x,
