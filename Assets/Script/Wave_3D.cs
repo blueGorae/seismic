@@ -9,8 +9,9 @@ public class Wave_3D : MonoBehaviour
     private Vector3[] originalVertices;
     private Mesh mesh;
     private float density = 1.0f;
-    private float v_p = (float)(4500.0f / 1000.0f);
-    private float v_s = (float)(2500.0f / 1000.0f);
+    private float scale = 0.1f;
+    private float v_p;
+    private float v_s;
     private float d = 0.0f;
     private float f = 10.0f;
     private float lambda = 1.0f;
@@ -21,23 +22,24 @@ public class Wave_3D : MonoBehaviour
         mesh = GetComponent<MeshFilter>().mesh;
         originalVertices = mesh.vertices;
         density = manager.DensityVelocityValue().density;
-        v_p = manager.DensityVelocityValue().v_p / 1000.0f;
-        v_s = manager.DensityVelocityValue().v_s / 1000.0f;
+        v_p = manager.DensityVelocityValue().v_p / scale;
+        v_s = manager.DensityVelocityValue().v_s / scale;
 
-        A = (float)(Mathf.Pow(10, (float)(manager.Magnitude(Target.T_3D) - 2.56 * (Mathf.Log10(4)) + 1.67)) / 1000);
+        A = (float)(Mathf.Pow(10, (float)(manager.Magnitude(Target.T_3D) - 2.56 * (Mathf.Log10(4)) + 1.67)) / scale);
 
     }
 
     void Update()
     {
         density = manager.DensityVelocityValue().density;
-        v_p = manager.DensityVelocityValue().v_p / 1000.0f;
-        v_s = manager.DensityVelocityValue().v_s / 1000.0f;
+        float adjustScale = manager.ApplyGrassland() ? 1f : 1000f;
+        v_p = manager.DensityVelocityValue().v_p / adjustScale;
+        v_s = manager.DensityVelocityValue().v_s / adjustScale;
 
-        A = (float)(Mathf.Pow(10, (float)(manager.Magnitude(Target.T_3D) - 2.56 * (Mathf.Log10(4)) + 1.67)) / 1000);
+        A = (float)(Mathf.Pow(10, (float)(manager.Magnitude(Target.T_3D) - 2.56 * (Mathf.Log10(4)) + 1.67)) / adjustScale);
 
         Vector3[] newVertices = new Vector3[originalVertices.Length];
-        if (manager.Apply3D())
+        if (manager.Apply3D() || manager.ApplyGrassland())
         {
             for (int i = 0; i < originalVertices.Length; i++)
             {
@@ -75,7 +77,7 @@ public class Wave_3D : MonoBehaviour
                 origin.z);
             };
 
-                return newVertex;
+            return newVertex;
         }
         else if (manager.ApplyS())
         {
