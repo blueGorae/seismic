@@ -15,15 +15,19 @@ public class S_Wave_2D : MonoBehaviour
         originalVertices = mesh.vertices;
     }
 
-
     void Update()
     {
-
         Vector3[] newVertices = new Vector3[originalVertices.Length];
-
-        for (int i = 0; i < originalVertices.Length; i++)
+        if (manger.ApplyS2D())
         {
-            newVertices[i] = WaveFunction(originalVertices[i], Time.time);
+            for (int i = 0; i < originalVertices.Length; i++)
+            {
+                newVertices[i] = WaveFunction(originalVertices[i], Time.time);
+            }
+        }
+        else
+        {
+            newVertices = originalVertices;
         }
 
         mesh.vertices = newVertices;
@@ -40,7 +44,7 @@ public class S_Wave_2D : MonoBehaviour
         return new Vector3(
              origin.x,
              origin.y,
-             origin.z + Mathf.Sin(origin.x + timeCode)
+             origin.z + (float)(Mathf.Cos(2 * Mathf.PI * (Time.fixedTime - (origin.x Z/ 6))))
         );
     }
 }

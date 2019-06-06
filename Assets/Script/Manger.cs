@@ -27,7 +27,6 @@ public class Manger : MonoBehaviour
     public Toggle waveS;
     public Toggle waveEarthquake;
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -41,6 +40,36 @@ public class Manger : MonoBehaviour
     void Update()
     {
 
+    }
+
+    public bool ApplyP2D()
+    {
+        return (CurrentTarget() == Target.T_2D && CurrentWave() == Wave.W_P);
+    }
+
+    public bool ApplyP3D()
+    {
+        return (CurrentTarget() == Target.T_3D && CurrentWave() == Wave.W_P);
+    }
+
+    public bool ApplyS2D()
+    {
+        return (CurrentTarget() == Target.T_2D && CurrentWave() == Wave.W_S);
+    }
+
+    public bool ApplyS3D()
+    {
+        return (CurrentTarget() == Target.T_3D && CurrentWave() == Wave.W_S);
+    }
+
+    public bool ApplyPGrassland()
+    {
+        return (CurrentTarget() == Target.T_GRASSLAND && CurrentWave() == Wave.W_P);
+    }
+
+    public bool ApplySGrassland()
+    {
+        return (CurrentTarget() == Target.T_GRASSLAND && CurrentWave() == Wave.W_S);
     }
 
     public void UpdateDensitySlider(float value)

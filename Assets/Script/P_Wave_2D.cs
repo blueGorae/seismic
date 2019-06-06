@@ -8,7 +8,6 @@ public class P_Wave_2D : MonoBehaviour
     public Manger manger;
     private Vector3[] originalVertices;
     private Mesh mesh;
-    private Vector3 startPoint = new Vector3(0.0f, 0.0f, 0.0f);
 
     void Start()
     {
@@ -19,12 +18,17 @@ public class P_Wave_2D : MonoBehaviour
 
     void Update()
     {
-
         Vector3[] newVertices = new Vector3[originalVertices.Length];
-
-        for (int i = 0; i < originalVertices.Length; i++)
+        if (manger.ApplyP2D())
         {
-            newVertices[i] = WaveFunction(originalVertices[i], Time.time);
+            for (int i = 0; i < originalVertices.Length; i++)
+            {
+                newVertices[i] = WaveFunction(originalVertices[i], Time.time);
+            }
+        }
+        else
+        {
+            newVertices = originalVertices;
         }
 
         mesh.vertices = newVertices;
@@ -39,7 +43,7 @@ public class P_Wave_2D : MonoBehaviour
         // traveling with a speed of 1 unit per second.
         // Change this to your own wave function.
         return new Vector3(
-(float)(origin.x - Mathf.Cos(2 * Mathf.PI - (Time.fixedTime - (origin.x / 6)))),
+             (float)(origin.x - Mathf.Cos(2 * Mathf.PI * (Time.fixedTime - (origin.x / 6)))),
              origin.y,
              origin.z
         );

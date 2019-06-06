@@ -8,7 +8,6 @@ public class P_Wave_3D : MonoBehaviour
     public Manger manger;
     private Vector3[] originalVertices;
     private Mesh mesh;
-    private Vector3 startPoint = new Vector3(0.0f, 0.0f, 0.0f);
     private float v = 6.0f;
     private float A = 1.0f;
 
@@ -21,12 +20,17 @@ public class P_Wave_3D : MonoBehaviour
 
     void Update()
     {
-
         Vector3[] newVertices = new Vector3[originalVertices.Length];
-
-        for (int i = 0; i < originalVertices.Length; i++)
+        if (manger.ApplyP3D())
         {
-            newVertices[i] = WaveFunction(originalVertices[i], Time.time);
+            for (int i = 0; i < originalVertices.Length; i++)
+            {
+                newVertices[i] = WaveFunction(originalVertices[i], Time.time);
+            }
+        }
+        else
+        {
+            newVertices = originalVertices;
         }
 
         mesh.vertices = newVertices;
@@ -48,7 +52,7 @@ public class P_Wave_3D : MonoBehaviour
         return new Vector3(
             origin.x + (cos_theta) * (float)A * (Mathf.Cos(2 * Mathf.PI * (Time.fixedTime - (d / v)))),
             origin.y + (sin_theta) * (float)A * (Mathf.Cos(2 * Mathf.PI * (Time.fixedTime - (d / v)))),
-             origin.z 
+             origin.z
         );
 
     }
