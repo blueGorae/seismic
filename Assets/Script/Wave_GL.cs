@@ -27,7 +27,7 @@ public class Wave_GL : MonoBehaviour
         v_p = manager.DensityVelocityValue().v_p / scale;
         v_s = manager.DensityVelocityValue().v_s / scale;
 
-        A = (float)(Mathf.Pow(10, (float)(manager.Magnitude(Target.T_3D) - 2.56 * (Mathf.Log10(4)) + 1.67)) / scale);
+        A = (float)(Mathf.Pow(10, (float)(manager.Magnitude(Target.T_GRASSLAND) - 2.56 * (Mathf.Log10(4)) + 1.67)) / scale);
 
     }
 
@@ -37,7 +37,7 @@ public class Wave_GL : MonoBehaviour
         v_p = manager.DensityVelocityValue().v_p / scale;
         v_s = manager.DensityVelocityValue().v_s / scale;
 
-        A = (float)(Mathf.Pow(10, (float)(manager.Magnitude(Target.T_3D) - 2.56 * (Mathf.Log10(4)) + 1.67)) / scale);
+        A = (float)(Mathf.Pow(10, (float)(manager.Magnitude(Target.T_GRASSLAND) - 2.56 * (Mathf.Log10(4)) + 1.67)) / scale);
 
         Vector3[] newVertices = new Vector3[originalVertices.Length];
 
