@@ -17,6 +17,8 @@ public class Wave_3D : MonoBehaviour
     private float lambda = 1.0f;
     private float A = 1.0f;
 
+    private float time_spend = 0.0f;
+
     void Start()
     {
         mesh = GetComponent<MeshFilter>().mesh;
@@ -97,15 +99,19 @@ public class Wave_3D : MonoBehaviour
         }
         else if (manager.ApplyEarthquake())
         {
+            if ((int)timeCode % 10 == 0)
+            {
+                time_spend = timeCode;
+            }
 
             float r = Mathf.Sqrt(Mathf.Pow(origin.x, 2) + Mathf.Pow(origin.y, 2));
             
-            float d_p_start = v_p * timeCode;
+            float d_p_start = v_p * (timeCode - time_spend);
             float d_p_end = d_p_start - v_p * 2;
             float cos_theta = origin.x / r;
             float sin_theta = origin.y / r;
 
-            float d_s_start = v_s * timeCode;
+            float d_s_start = v_s * (timeCode - time_spend);
             float d_s_end = d_s_start - v_s * 2;
            
 
