@@ -5,6 +5,26 @@ using UnityEngine.UI;
 
 public enum Target { NONE, T_2D, T_3D, T_GRASSLAND };
 public enum Wave { NONE, W_P, W_S, W_EARTHQUAKE };
+public enum Density { NONE, D_DrySands, D_WetSands, D_Shale, D_Limestone, D_Granite, D_Basalt };
+public class DensityVelocity
+{
+    public static DensityVelocity DrySands = new DensityVelocity(800, 300, 1.6f);
+    public static DensityVelocity WetSands = new DensityVelocity(2750, 800, 2.0f);
+    public static DensityVelocity Shale = new DensityVelocity(2500, 1125, 2.35f);
+    public static DensityVelocity Limestone = new DensityVelocity(4750, 2650, 2.55f);
+    public static DensityVelocity Granite = new DensityVelocity(5250, 2900, 2.6f);
+    public static DensityVelocity Basalt = new DensityVelocity(5500, 3100, 2.9f);
+
+    public float v_p { get; }
+    public float v_s { get; }
+    public float density { get; }
+    DensityVelocity(float v_p, float v_s, float density)
+    {
+        this.v_p = v_p;
+        this.v_s = v_s;
+        this.density = density;
+    }
+};
 
 public class Manger : MonoBehaviour
 {
@@ -12,11 +32,13 @@ public class Manger : MonoBehaviour
     public Toggle target2D;
     public Toggle target3D;
     public Toggle targetGrassland;
-    public Slider densitySlider;
-    public Text densityValue;
-    private float density2D;
-    private float density3D;
-    private float densityGrassland;
+    public ToggleGroup densityGroup;
+    public Toggle densityDrySands;
+    public Toggle densityWetSands;
+    public Toggle densityShale;
+    public Toggle densityLimestone;
+    public Toggle densityGranite;
+    public Toggle densityBasalt;
     public Slider magnitudeSlider;
     public Text magnitudeValue;
     private float magnitude2D;
@@ -30,7 +52,6 @@ public class Manger : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        densityValue.text = densitySlider.value.ToString();
         magnitudeValue.text = magnitudeSlider.value.ToString();
         target2D.Select();
         waveP.Select();
@@ -72,23 +93,8 @@ public class Manger : MonoBehaviour
         return CurrentWave() == Wave.W_EARTHQUAKE;
     }
 
-    public void UpdateDensitySlider(float value)
+    public void UpdateDensityGroup()
     {
-        switch (CurrentTarget())
-        {
-            case Target.NONE:
-                break;
-            case Target.T_2D:
-                density2D = value;
-                break;
-            case Target.T_3D:
-                density3D = value;
-                break;
-            case Target.T_GRASSLAND:
-                densityGrassland = value;
-                break;
-        }
-        densityValue.text = value.ToString();
     }
 
     public void UpdateMagnitudeSlider(float value)
@@ -110,41 +116,42 @@ public class Manger : MonoBehaviour
 
     public void UpdateTargetGroup()
     {
-        float density;
         float magnitude;
         switch (CurrentTarget())
         {
             case Target.T_2D:
-                density = density2D;
                 magnitude = magnitude2D;
                 break;
             case Target.T_3D:
-                density = density3D;
                 magnitude = magnitude3D;
                 break;
             case Target.T_GRASSLAND:
-                density = densityGrassland;
                 magnitude = magnitudeGrassland;
                 break;
             default:
                 return;
         }
-        densitySlider.value = density;
         magnitudeSlider.value = magnitude;
     }
 
-    public float Density(Target target)
+    public DensityVelocity DensityVelocityValue()
     {
-        switch (target)
+        switch (CurrentDensity())
         {
-            case Target.T_2D:
-                return density2D;
-            case Target.T_3D:
-                return density3D;
-            case Target.T_GRASSLAND:
-                return densityGrassland;
+            case Density.D_DrySands:
+                return DensityVelocity.DrySands;
+            case Density.D_WetSands:
+                return DensityVelocity.WetSands;
+            case Density.D_Shale:
+                return DensityVelocity.Shale;
+            case Density.D_Limestone:
+                return DensityVelocity.Limestone;
+            case Density.D_Granite:
+                return DensityVelocity.Granite;
+            case Density.D_Basalt:
+                return DensityVelocity.Basalt;
         }
-        return 0f;
+        return null;
     }
 
     public float Magnitude(Target target)
@@ -184,6 +191,41 @@ public class Manger : MonoBehaviour
             }
         }
         return Target.NONE;
+    }
+
+    public Density CurrentDensity()
+    {
+        foreach (var toggle in densityGroup.ActiveToggles())
+        {
+            if (toggle.isOn)
+            {
+                if (toggle == densityDrySands)
+                {
+                    return Density.D_DrySands;
+                }
+                else if (toggle == densityWetSands)
+                {
+                    return Density.D_WetSands;
+                }
+                else if (toggle == densityShale)
+                {
+                    return Density.D_Shale;
+                }
+                else if (toggle == densityLimestone)
+                {
+                    return Density.D_Limestone;
+                }
+                else if (toggle == densityGranite)
+                {
+                    return Density.D_Granite;
+                }
+                else if (toggle == densityBasalt)
+                {
+                    return Density.D_Basalt;
+                }
+            }
+        }
+        return Density.NONE;
     }
 
     public Wave CurrentWave()

@@ -57,6 +57,10 @@ public class Wave_2D : MonoBehaviour
                 origin.z + (float)(Mathf.Cos(2 * Mathf.PI * (Time.fixedTime - (origin.x / 6))))
             );
         }
+        else if (manager.ApplyEarthquake())
+        {
+            return origin;
+        }
         else
         {
             return origin;
