@@ -69,7 +69,6 @@ public class Wave_3D : MonoBehaviour
             Vector3 newVertex = origin;
             if (r < d)
             {
-                //Debug.Log("lalala");
                 newVertex = new Vector3(
                 origin.x + (cos_theta) * (float)A * (Mathf.Cos(2 * Mathf.PI * (Time.fixedTime - (r / v_p)))),
                 origin.y + (sin_theta) * (float)A * (Mathf.Cos(2 * Mathf.PI * (Time.fixedTime - (r / v_p)))),
@@ -95,7 +94,37 @@ public class Wave_3D : MonoBehaviour
         }
         else if (manager.ApplyEarthquake())
         {
-            return origin;
+            float r = Mathf.Sqrt(Mathf.Pow(origin.x, 2) + Mathf.Pow(origin.y, 2));
+
+            float d_p_start = v_p * timeCode;
+            float d_p_end = d_p_start - v_p * 2;
+            float cos_theta = origin.x / r;
+            float sin_theta = origin.y / r;
+
+            float d_s_start = v_s * timeCode;
+            float d_s_end = d_s_start - v_s * 2;
+           
+
+            Vector3 newVertex = origin;
+
+            if(r > d_p_end && r< d_p_start)
+            {
+                newVertex = new Vector3(
+                   origin.x + (cos_theta) * (float)A * (Mathf.Cos(2 * Mathf.PI * (Time.fixedTime - (r / v_p)))),
+                   origin.y + (sin_theta) * (float)A * (Mathf.Cos(2 * Mathf.PI * (Time.fixedTime - (r / v_p)))),
+                   origin.z);
+
+            }
+
+            if(r > d_s_end && r < d_s_start)
+            {
+                newVertex = new Vector3(
+                 origin.x,
+                 origin.y,
+                 origin.z + (float)A * (Mathf.Cos(2 * Mathf.PI * (Time.fixedTime - (r / v_s)))));
+            }
+
+            return newVertex;
         }
         else
         {
