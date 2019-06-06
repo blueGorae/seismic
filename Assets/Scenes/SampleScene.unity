@@ -1743,9 +1743,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 995212887}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad15ecdcb876b429fbdef5f9735fcbfe, type: 3}
+  m_Script: {fileID: 11500000, guid: 65f4d3bdc583949c993e79db200d245b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  manger: {fileID: 814197073}
 --- !u!114 &995212889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1755,21 +1756,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 995212887}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bfcfd3da72f0463281526e8aad47ca5, type: 3}
+  m_Script: {fileID: 11500000, guid: 1351a286a4a7e4506a13e5c960cb2c8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &995212890
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 995212887}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3a0c75541fe74c2e9b8202dd17274ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  manger: {fileID: 814197073}
 --- !u!1 &1014836250
 GameObject:
   m_ObjectHideFlags: 0
@@ -2555,6 +2545,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3a0c75541fe74c2e9b8202dd17274ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  manger: {fileID: 814197073}
 --- !u!114 &1604173932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2562,23 +2553,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1604173930}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2bfcfd3da72f0463281526e8aad47ca5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1604173935
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1604173930}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad15ecdcb876b429fbdef5f9735fcbfe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  manger: {fileID: 814197073}
 --- !u!1 &1644812789
 GameObject:
   m_ObjectHideFlags: 0

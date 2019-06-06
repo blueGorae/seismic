@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class P_Wave_2D : MonoBehaviour
 {
+    public Manger manger;
     private Vector3[] originalVertices;
     private Mesh mesh;
     private Vector3 startPoint = new Vector3(0.0f, 0.0f, 0.0f);

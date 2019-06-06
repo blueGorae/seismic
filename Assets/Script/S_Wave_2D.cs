@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class S_Wave_2D : MonoBehaviour
 {
+    public Manger manger;
     private Vector3[] originalVertices;
     private Mesh mesh;
 
