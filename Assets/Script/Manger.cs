@@ -52,6 +52,11 @@ public class Manger : MonoBehaviour
         return CurrentTarget() == Target.T_3D;
     }
 
+    public bool ApplyGrassland()
+    {
+        return CurrentTarget() == Target.T_GRASSLAND;
+    }
+
     public bool ApplyP()
     {
         return CurrentWave() == Wave.W_P;
@@ -62,34 +67,9 @@ public class Manger : MonoBehaviour
         return CurrentWave() == Wave.W_S;
     }
 
-    public bool ApplyP2D()
+    public bool ApplyEarthquake()
     {
-        return (CurrentTarget() == Target.T_2D && CurrentWave() == Wave.W_P);
-    }
-
-    public bool ApplyP3D()
-    {
-        return (CurrentTarget() == Target.T_3D && CurrentWave() == Wave.W_P);
-    }
-
-    public bool ApplyS2D()
-    {
-        return (CurrentTarget() == Target.T_2D && CurrentWave() == Wave.W_S);
-    }
-
-    public bool ApplyS3D()
-    {
-        return (CurrentTarget() == Target.T_3D && CurrentWave() == Wave.W_S);
-    }
-
-    public bool ApplyPGrassland()
-    {
-        return (CurrentTarget() == Target.T_GRASSLAND && CurrentWave() == Wave.W_P);
-    }
-
-    public bool ApplySGrassland()
-    {
-        return (CurrentTarget() == Target.T_GRASSLAND && CurrentWave() == Wave.W_S);
+        return CurrentWave() == Wave.W_EARTHQUAKE;
     }
 
     public void UpdateDensitySlider(float value)
