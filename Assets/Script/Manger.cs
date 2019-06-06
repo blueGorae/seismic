@@ -42,6 +42,26 @@ public class Manger : MonoBehaviour
 
     }
 
+    public bool Apply2D()
+    {
+        return CurrentTarget() == Target.T_2D;
+    }
+
+    public bool Apply3D()
+    {
+        return CurrentTarget() == Target.T_3D;
+    }
+
+    public bool ApplyP()
+    {
+        return CurrentWave() == Wave.W_P;
+    }
+
+    public bool ApplyS()
+    {
+        return CurrentWave() == Wave.W_S;
+    }
+
     public bool ApplyP2D()
     {
         return (CurrentTarget() == Target.T_2D && CurrentWave() == Wave.W_P);

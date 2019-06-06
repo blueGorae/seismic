@@ -44,7 +44,7 @@ public class S_Wave_2D : MonoBehaviour
         return new Vector3(
              origin.x,
              origin.y,
-             origin.z + (float)(Mathf.Cos(2 * Mathf.PI * (Time.fixedTime - (origin.x Z/ 6))))
+             origin.z + (float)(Mathf.Cos(2 * Mathf.PI * (Time.fixedTime - (origin.x / 6))))
         );
     }
 }
