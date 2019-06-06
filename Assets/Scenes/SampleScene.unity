@@ -2546,19 +2546,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manger: {fileID: 814197073}
---- !u!114 &1604173932
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1604173930}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bfcfd3da72f0463281526e8aad47ca5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  manger: {fileID: 814197073}
 --- !u!1 &1644812789
 GameObject:
   m_ObjectHideFlags: 0
