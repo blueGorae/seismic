@@ -1728,6 +1728,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dddc478590f3e4b6996635b2f2d00929, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  camera: {fileID: 963194227}
   targetGroup: {fileID: 506032589}
   target2D: {fileID: 1477461888}
   target3D: {fileID: 878791561}
