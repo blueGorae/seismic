@@ -49,6 +49,8 @@ public class Manger : MonoBehaviour
     public Toggle waveP;
     public Toggle waveS;
     public Toggle waveEarthquake;
+    private float diffDirection = 30f;
+    private float diffAngle = 3f;
 
     // Start is called before the first frame update
     void Start()
@@ -62,7 +64,26 @@ public class Manger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CheckInput();
 
+        if (Input.GetKey("down"))
+        {
+            print("down arrow key is held down");
+        }
+    }
+
+    void CheckInput()
+    {
+        camera.transform.Translate(
+            Input.GetKey(KeyCode.D) ? diffDirection : (Input.GetKey(KeyCode.A) ? -diffDirection : 0f),
+            Input.GetKey(KeyCode.T) ? diffDirection : (Input.GetKey(KeyCode.G) ? -diffDirection : 0f),
+            Input.GetKey(KeyCode.W) ? diffDirection : (Input.GetKey(KeyCode.S) ? -diffDirection : 0f)
+        );
+        camera.transform.Rotate(
+            Input.GetKey(KeyCode.I) ? diffAngle : (Input.GetKey(KeyCode.K) ? -diffAngle : 0f),
+            Input.GetKey(KeyCode.L) ? diffAngle : (Input.GetKey(KeyCode.J) ? -diffAngle : 0f),
+            0f
+        );
     }
 
     public bool Apply2D()
