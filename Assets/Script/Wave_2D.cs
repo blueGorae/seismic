@@ -16,10 +16,19 @@ public class Wave_2D : MonoBehaviour
     private float f = 10.0f;
     private float lambda = 1.0f;
     private float A = 1.0f;
-
+    public Material[] mats;
+    private Material mat;
     void Start()
     {
         mesh = GetComponent<MeshFilter>().mesh;
+        mats = new Material[] { Resources.Load("DrySands/DrySands", typeof(Material)) as Material,
+            Resources.Load("WetSands/WetSands", typeof(Material)) as Material,
+            Resources.Load("Shale/Shale", typeof(Material)) as Material,
+            Resources.Load("Limestone/Limestone", typeof(Material)) as Material,
+            Resources.Load("Granite/Granite", typeof(Material)) as Material,
+            Resources.Load("Basalt/Basalt", typeof(Material)) as Material,
+      };
+        mat = mats[0];
         originalVertices = mesh.vertices;
         density = manager.DensityVelocityValue().density;
         v_p = manager.DensityVelocityValue().v_p / scale;
@@ -34,12 +43,35 @@ public class Wave_2D : MonoBehaviour
         density = manager.DensityVelocityValue().density;
         v_p = manager.DensityVelocityValue().v_p / scale;
         v_s = manager.DensityVelocityValue().v_s / scale;
-
         A = (float)(Mathf.Pow(10, (float)(manager.Magnitude(Target.T_2D) - 2.56 * (Mathf.Log10(4)) + 1.67)) / scale);
+
 
         Vector3[] newVertices = new Vector3[originalVertices.Length];
         if (manager.Apply2D())
         {
+            switch (manager.CurrentDensity())
+            {
+                case Density.D_DrySands:
+                    mat = mats[0];
+                    break;
+                case Density.D_WetSands:
+                    mat = mats[1];
+                    break;
+                case Density.D_Shale:
+                    mat = mats[2];
+                    break;
+                case Density.D_Limestone:
+                    mat = mats[3];
+                    break;
+                case Density.D_Granite:
+                    mat = mats[4];
+                    break;
+                case Density.D_Basalt:
+                    mat = mats[5];
+                    break;
+            }
+
+            GetComponent<MeshRenderer>().material = mat;
             for (int i = 0; i < originalVertices.Length; i++)
             {
                 newVertices[i] = WaveFunction(originalVertices[i], Time.time);
